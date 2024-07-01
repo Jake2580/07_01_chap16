@@ -1,0 +1,10 @@
+node_modules
+package-lock.json
+private.ini
+.env
+.vscode
+public
+server.cert
+server.key
+server_*
+httpServer*
