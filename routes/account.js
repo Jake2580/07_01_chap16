@@ -17,8 +17,7 @@ router.post("/account/login", async (req, res) => {
     .findOne({ userid: req.body.userid })
     .then((result) => {
       if (result) {
-        const sql = `SELECT salt FROM UserSalt 
-                    WHERE userid=?`;
+        const sql = `SELECT salt FROM usersalt WHERE userid=?`;
         mysqldb.query(sql, [req.body.userid], (err, rows, fields) => {
           if (err) {
             res.render("index.ejs", { data: { alertMsg: '다시 로그인 해주세요' } });
@@ -75,7 +74,7 @@ router.post("/account/save", async (req, res) => {
               console.log("회원가입 성공");
 
               //MySQL에 salt를 저장
-              const sql = `INSERT INTO UserSalt (userid, salt)
+              const sql = `INSERT INTO usersalt (userid, salt)
                     VALUES (?,?)`;
               mysqldb.query(sql, [req.body.userid, salt], (err, result2) => {
                 if (err) {

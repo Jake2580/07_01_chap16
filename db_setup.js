@@ -21,7 +21,8 @@ const setup = async () => {
             host: process.env.MYSQL_HOST,
             user: process.env.MYSQL_USER,
             password: process.env.MYSQL_PASSWORD,
-            database: process.env.MYSQL_DB
+            database: process.env.MYSQL_DB,
+            port: process.env.MYSQL_PORT
         });
         mysqldb.connect();
         console.log("MySQL 접속 성공");
