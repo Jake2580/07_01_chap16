@@ -74,8 +74,7 @@ router.post("/account/save", async (req, res) => {
               console.log("회원가입 성공");
 
               //MySQL에 salt를 저장
-              const sql = `INSERT INTO usersalt (userid, salt)
-                    VALUES (?,?)`;
+              const sql = `INSERT INTO usersalt (userid, salt) VALUES (?,?)`;
               mysqldb.query(sql, [req.body.userid, salt], (err, result2) => {
                 if (err) {
                   console.log(err);
