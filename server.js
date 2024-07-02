@@ -33,7 +33,8 @@ app.get("/", (req, res) => {
 
 app.get('/search', async function(req, res) {
   const { mongodb } = await setup();
-  mongodb.collection('post').find({ title: req.query.value }).toArray().then((result) => {
+  const regex = new RegExp(req.query.value, 'i');
+  mongodb.collection('post').find({ title: { $regex: regex } }).toArray().then((result) => {
     result.forEach((item) => {
       if (item.path != undefined) {
         item.path = item.path.replace('public/', '');
